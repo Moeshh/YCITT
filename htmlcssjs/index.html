@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Opdracht 1</title>
+</head>
+<body>
+	
+</body>
+</html>
+
+<html>
+  <head>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .top {
+        background-color: #7E38FF;
+        height: 10%;
+      }
+
+      .bottom {
+        display: flex;
+        height: 80%;
+      }
+
+      .bottom-left {
+        background-color: lightgreen;
+        width: 50%;
+        padding:10px;
+      }
+
+      .bottom-right {
+        background-color: lightblue;
+        width: 50%;
+        padding: 10px;
+      }
+
+      h1 {
+        padding: 0 0 0 50px;
+        color:#fff
+      }
+
+      form {
+			margin: 8px auto;
+			width: 500px;
+			padding: 50px;
+			text-align: center;
+			background-color: #f2f2f2;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+		}
+
+		label {
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"], input[type="password"] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		button[type="submit"] {
+			width: 100%;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+    #title{
+      position: flex;
+      float:left;
+    }
+
+    #url{
+      position:flex;
+      float:right;
+      padding: 10px;
+      color:#fff;
+    }
+
+    #image-container {
+			width: 460px;
+			height: auto;
+			overflow: hidden;
+			margin: 20px auto;
+		}
+
+		#image {
+			width: 920px;
+			height: auto;
+			position: relative;
+			left: 0;
+			/*transition: left 0.5s;*/
+		}
+
+    #textdiv {
+      padding: 20px;
+      width: auto;
+      position: relative;
+    }
+
+    #textfield {
+      width:100%;
+      min-height: 300px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div id="title"><h1>Opdracht 1: HTML, CSS en Javascript</h1></div>
+        <div id="url"><a href="./rooster.html">Rooster</a></div>
+      </div>
+      <div class="bottom">
+        <div class="bottom-left">
+            <form>
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="name">
+                <br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <br><br>
+                <button type="submit" onclick="showValues()">Submit</button>
+            </form>
+            <div id="textdiv">
+                <textarea id="textfield"></textarea>
+            </div>
+        </div>
+        <div class="bottom-right">
+            <input type="text" id="textwolk" name="textwolk" value="Hmm... Wat is je naam?" readonly>
+            <div id="image-container">
+            <img id="image" src="mood.png" alt="Mood">
+        </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        function showValues() {
+            event.preventDefault();
+            let username = document.getElementById("name");
+            let password = document.getElementById("password");
+            let textfield = document.getElementById("textfield");
+            let textwolk = document.getElementById("textwolk");
+            let image = document.getElementById("image");
+            let users = [
+                {
+                    name: "cecil",
+                    username: "CLB",
+                    password: "macisking"
+                },
+                {
+                    name: "david",
+                    username: "dmeel",
+                    password: "terminator"
+                },
+                {
+                    name: "edo",
+                    username: "edorb721",
+                    password: "twitchstreamer"
+                },
+                {
+                    name: "mustafa",
+                    username: "Meaush",
+                    password: "ez"
+                }
+            ];
+            if(!username.value){
+                textwolk.value = "Je bent je gebruikersnaam vergeten in te vullen";
+                username.style.border = "2px solid #FF0000"
+                image.style.left = "0";
+            }else if(!password.value){
+                textwolk.value = "Je bent je wachtwoord vergeten in te vullen";
+                password.style.border = "2px solid #FF0000"
+                image.style.left = "0";
+            }else{
+                let userfound = false;
+                for(let i=0; i<users.length; i++){
+                    if(username.value == users[i]["username"] && password.value == users[i]["password"]){
+                        let Uppercasename = users[i]["name"].charAt(0).toUpperCase() + users[i]["name"].slice(1);
+                        textwolk.value = "Aha!! Je naam is "+users[i]["name"];
+                        userfound = passfound = true;
+                        image.style.left = "-460px";
+                        username.style.border = "2px solid #00FF00"
+                        password.style.border = "2px solid #00FF00"
+                        break;
+                    }
+                }
+                if(!userfound){
+                    textfield.innerHTML= "Helaas is de password of gebruikersnaam niet bekend";
+                    textwolk.value = "Daar gaat iets mis!";
+                    username.style.border = "2px solid #FF0000"
+                    password.style.border = "2px solid #FF0000"
+                }
+            }
+            console.log("Name: " + username.value + "\nPassword: " + password.value);
+        }
+    </script>
+  </body>
+</html>
