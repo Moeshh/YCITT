@@ -1,11 +1,17 @@
 import mysql.connector
+import urllib.request
+from urllib.parse import urlparse
+from urllib.parse import parse_qs
+import pandas as pd
+from html_table_parser import HTMLTableParser
+from datetime import datetime
 
 dbconnect = mysql.connector.connect(
     host='localhost',
     port='3306',
     user='root',
     password='',
-    database='test'
+    database='ycitt'
 )
 
 mycursor = dbconnect.cursor()
@@ -27,3 +33,12 @@ def wherequery(param):
     mycursor.execute('SELECT * FROM students WHERE age = %s', (param,))
     mydata = mycursor.fetchall()
     return str(mydata)
+
+def insertrooster():
+    #test
+    return "rooster values inserted in database"
+
+def parse_date(date_str):
+    dt = datetime.strptime(date_str, '%d-%m')
+    year = datetime.now().year
+    return dt.replace(year=year)
