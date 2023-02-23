@@ -61,3 +61,4 @@ jobs:
           app-name: 'yc2302'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2AC709AA44C640DF970ADCE9D0B79E75 }}
+          app_location: '/python/app.py'
